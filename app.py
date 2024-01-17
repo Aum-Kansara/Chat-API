@@ -1,5 +1,5 @@
 from flask import Flask, request
-from flask_wtf.csrf import CSRFProtect
+# from flask_wtf.csrf import CSRFProtect
 import os
 import google.generativeai as genai
 
@@ -7,7 +7,7 @@ import google.generativeai as genai
 
 app = Flask(__name__)
 app.secret_key = "3VbxkWHqlSZ67j4aPCi5kN9C7Ogbj4e1"
-csrf = CSRFProtect(app)
+# csrf = CSRFProtect(app)
 
 chat_history=[]
 
@@ -33,13 +33,6 @@ system_prompt="""consider this as System Instructions :
                User : Hi
                Assistant : 
                """
-
-@app.after_request
-def set_secure_headers(response):
-    response.headers['X-Content-Type-Options'] = 'nosniff'
-    response.headers['X-Frame-Options'] = 'SAMEORIGIN'
-    response.headers['X-XSS-Protection'] = '1; mode=block'
-    return response
 
 @app.route('/')
 def index():
